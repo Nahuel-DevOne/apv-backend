@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import conectarDB from "./config/db.js";
+import veterinarioRoutes from './routes/veterinarioRoutes.js'
 
 const app = express();
 dotenv.config();
@@ -8,9 +9,7 @@ dotenv.config();
 conectarDB();
 console.log(process.env.MONGO_URI);
 
-app.use('/', (req, res) => {
-    res.send('Hola mundo soy Goku');
-});
+app.use("/api/veterinarios", veterinarioRoutes);
 
 const PORT = process.env.PORT || 4000
 
