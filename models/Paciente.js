@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const pacientesSchema = moongose.Schema(
+const pacientesSchema = mongoose.Schema(
     {
         nombre: {
             type: String,
@@ -14,11 +14,12 @@ const pacientesSchema = moongose.Schema(
             type: String,
             required: true
         },
-        nombre: {
+        fecha: {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now()
         },
-        nombre: {
+        sintomas: {
             type: String,
             required: true
         },
