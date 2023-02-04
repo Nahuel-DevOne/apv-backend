@@ -35,11 +35,11 @@ const registrar = async (req, res) => {
 
 const perfil = (req, res) => {
     const { veterinario } = req;
-    res.json({ perfil: veterinario })
+    res.json(veterinario);
 };
 
 const confirmar = async (req, res) => {
-    const { token } = req.params
+    const { token } = req.params;
     const usuarioConfirmar = await Veterinario.findOne({token})
      
     if(!usuarioConfirmar){
@@ -51,6 +51,7 @@ const confirmar = async (req, res) => {
         usuarioConfirmar.token = null;
         usuarioConfirmar.confirmado = true;
         await usuarioConfirmar.save();
+        
         res.json({msg: 'Usuario confirmado correctamente'})
     } catch (error) {
         console.log(error);
