@@ -4,10 +4,10 @@ import generarId from "../helpers/generarId.js";
 import emailRegistro from "../helpers/emailRegistro.js";
 
 const registrar = async (req, res) => {
-    const { email, nombre } = req.body
+    const { email, nombre } = req.body;
 
     // Prevenir usuarios duplicados
-    const existeUsuario = await Veterinario.findOne({email})
+    const existeUsuario = await Veterinario.findOne({ email })
 
     if(existeUsuario){
         const error = new Error('Usuario ya registrado');
@@ -40,7 +40,7 @@ const perfil = (req, res) => {
 
 const confirmar = async (req, res) => {
     const { token } = req.params;
-    const usuarioConfirmar = await Veterinario.findOne({token})
+    const usuarioConfirmar = await Veterinario.findOne({ token })
      
     if(!usuarioConfirmar){
         const error = new Error('Token no válido')
@@ -62,14 +62,14 @@ const confirmar = async (req, res) => {
 const autenticar = async (req, res) => {
     const { email, password } = req.body;
     //Comprobando si el usuario existe
-    const usuario = await Veterinario.findOne({email});
+    const usuario = await Veterinario.findOne({ email });
     if (!usuario) {
         const error = new Error("El usuario no existe");
         return res.status(404).json({ msg: error.message })
     }
 
     // Comprobar si el usuario esta confirmado
-    if (usuario.confirmado) {
+    if (!usuario.confirmado) {
         const error = new Error("Tu cuenta no ha sido confirmada");
         return res.status(403).json({ msg: error.message })
     }

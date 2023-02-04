@@ -54,4 +54,4 @@ veterinarioSchema.methods.comprobarPassword = async function(passwordFormulario)
 
 const Veterinario = mongoose.model('Veterinario', veterinarioSchema);
 
-export default Veterinario
+export default Veterinario;
